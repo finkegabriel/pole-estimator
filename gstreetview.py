@@ -1,16 +1,21 @@
 import google_streetview.api
+import csv
+import pandas as pd
 
-# Define parameters for street view api
-params = [{
-	'size': '600x300', # max 640x640 pixels
-	'location': '46.414382,10.013988',
-	'heading': '151.78',
-	'pitch': '-0.76',
-	'key': 'your_dev_key'
-}]
+parm = []
+fields = ["id","lat","lon","tag_number"]
 
-# Create a results object
-results = google_streetview.api.results(params)
+def download_street_view_image():
+	df = pd.read_csv('./data/pole_feature.csv',usecols=fields)
+	print(df)
+	return df
+			# parm.append({
+			# 	'size': '640x640', # max 640x640 pixels
+			# 	'location': f'{row[0]},{row[1]}',
+			# 	'heading': '151.78',
+			# 	'yaw': '-0.76',
+			# 	'key': 'your_dev_key'
+			# })
 
-# Download images to directory 'downloads'
-results.download_links('downloads')
+def get_parm():
+	return parm
